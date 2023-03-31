@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 template <typename T>
@@ -170,6 +171,35 @@ class array {
 
       return return_value;
     }
+
+
+// reverses array =======================================================================
+
+    void reverse() {
+      T *temp_arr = new T[_size];
+
+      int j = _size - 1;
+      for (int i = 0; i < _size; i++, j--) {
+        temp_arr[i] = _ptr_array[j];
+      }
+
+      delete[] _ptr_array;
+
+      _ptr_array = temp_arr;
+    }
+
+// returns index of the first element, that equals data =================================
+
+    int index_of(const T &data) {
+      int i = 0;
+      for (; i < _size; i++) {
+        if (_ptr_array[i] == data) {
+          break;
+        }
+      }
+      return i;
+    }
+
 
 
 // concatenate two arrays ===============================================================
