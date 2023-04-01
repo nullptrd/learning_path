@@ -196,6 +196,65 @@ class string {
     }
 
 
+// removes several elements from head and returns deleted elements as string ============
+
+    string remove_h(int amount) {
+      string return_value;
+      return_value._length = amount;
+      return_value._ptr_text = new char[amount + 1];
+      return_value._ptr_text[amount] = '\0';
+
+      for (int i = 0; i < amount; i++) {
+        return_value._ptr_text[i] = _ptr_text[i];
+      }
+
+      char *temp_char = new char[_length - amount + 1];
+
+      for (int i = 0; i < _length - amount; i++) {
+        temp_char[i] = _ptr_text[i + amount];
+      }
+
+      temp_char[_length - amount] = '\0';
+
+      delete[] _ptr_text;
+
+      _ptr_text = temp_char;
+      _length = _length - amount;
+
+      return return_value;
+    }
+
+
+// removes several elements from tail and returns deleted elements as string ============
+
+    string remove_t(int amount) {
+      string return_value;
+      return_value._length = amount;
+      return_value._ptr_text = new char[amount + 1];
+      return_value._ptr_text[amount] = '\0';
+
+      int j = 0;
+      for (int i = _length - amount; i < _length; i++, j++) {
+        return_value._ptr_text[i - (_length - amount)] = _ptr_text[i];
+      }
+
+      char *temp_char = new char[_length - amount + 1];
+
+      for (int i = 0; i < _length - amount; i++) {
+        temp_char[i] = _ptr_text[i];
+      }
+
+      temp_char[_length - amount] = '\0';
+
+      delete[] _ptr_text;
+
+      _ptr_text = temp_char;
+      _length = _length - amount;
+
+      return return_value;
+    }
+
+
 // returns index of the first element that equals to data from argument =================
 
     int index_of(const char *data) {
@@ -224,7 +283,56 @@ class string {
       _ptr_text = temp_char;
     }
 
-    //string& operator + (const string &another) {}
+
+// concatenates two strings =============================================================
+
+    string& operator + (const string &another) {
+      char *temp_char = new char[_length + another._length + 1];
+
+      for (int i = 0; i < _length; i++) {
+        temp_char[i] = _ptr_text[i];
+      }
+
+      int j = 0;
+      for (int i = _length; i < _length + another._length; i++, j++) {
+        temp_char[i] = another._ptr_text[j];
+      }
+
+      _length = _length + another._length;
+      _ptr_text = temp_char;
+      _ptr_text[_length] = '\0';
+
+      return *this;
+    }
+
+
+// assigns one string to another ========================================================
+
+    string& operator = (const string &another) {
+      char *temp_char = new char[another._length + 1];
+
+      for (int i = 0; i < another._length; i++) {
+        temp_char[i] = another._ptr_text[i];
+      }
+
+      delete[] _ptr_text;
+
+      _ptr_text = temp_char;
+      _length = another._length;
+      _ptr_text[_length] = '\0';
+
+      return *this;
+    }
+
+
+// assigns one string to another ========================================================
+
+    string& operator - (int amount) {
+      this->remove_t(amount);
+
+      return *this;
+    }
+
 
   private:
     int _length;

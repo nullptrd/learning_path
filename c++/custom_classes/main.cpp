@@ -60,6 +60,25 @@ int main() {
 
   std::cout << std::endl;
 
+  std::cout << "remove_h" << std::endl;
+  int_arr.remove_h(3).print();
+  int_arr.print();
+  std::cout << "size: " << int_arr.size() << std::endl;
+  int_arr.insert_f(12);
+  int_arr.insert_f(1);
+  int_arr.insert_f(5);
+  int_arr.insert_f(0);
+  int_arr.insert_f(9);
+
+  std::cout << std::endl;
+
+  std::cout << "remove_t" << std::endl;
+  int_arr.remove_t(1).print();
+  int_arr.print();
+  std::cout << "size: " << int_arr.size() << std::endl;
+
+  std::cout << std::endl;
+
   std::cout << "reverse" << std::endl;
   std::cout << "before: ";
   int_arr.print();
@@ -75,11 +94,11 @@ int main() {
 
   std::cout << std::endl;
 
-  std::cout << "operator +=" << std::endl;
+  std::cout << "operator +" << std::endl;
   array<int> another_int_arr(3);
-  int_arr += another_int_arr;
-  int_arr.print();
-  std::cout << "size: " << int_arr.size() << std::endl;
+  array<int> res_arr = int_arr + another_int_arr;
+  res_arr.print();
+  std::cout << "size: " << res_arr.size() << std::endl;
 
   std::cout << std::endl;
   std::cout << std::endl;
@@ -142,6 +161,20 @@ int main() {
 
   std::cout << std::endl;
 
+  std::cout << "remove_h" << std::endl;
+  str.remove_h(5).print();
+  str.print();
+  std::cout << "size: " << str.length() << std::endl;
+
+  std::cout << std::endl;
+
+  std::cout << "remove_t" << std::endl;
+  str.remove_t(3).print();
+  str.print();
+  std::cout << "size: " << str.length() << std::endl;
+
+  std::cout << std::endl;
+
   std::cout << "index_of" << std::endl;
   std::cout << "returned value: " << str.index_of("e") << std::endl;
   str.print();
@@ -157,6 +190,27 @@ int main() {
   str.print();
 
   std::cout << std::endl;
+
+  std::cout << "operator +" << std::endl;
+  string concat_str(" sdfas");
+  str = str + concat_str;
+  str.print();
+  std::cout << "size: " << concat_str.length() << std::endl;
+
+  std::cout << std::endl;
+
+  std::cout << "operator =" << std::endl;
+  string assign_str("asdf31");
+  str = assign_str;
+  str.print();
+  std::cout << "size: " << str.length() << std::endl;
+
+  std::cout << std::endl;
+
+  std::cout << "operator -" << std::endl;
+  str = str - 2;
+  str.print();
+  std::cout << "size: " << str.length() << std::endl;
 
   return 0;
 }

@@ -173,6 +173,59 @@ class array {
     }
 
 
+// removes several elements from head and returns deleted elements as array =============
+
+    array<T> remove_h(int amount) {
+      array<T> return_value(amount);
+      return_value._size = amount;
+      return_value._ptr_array = new T[amount];
+
+      for (int i = 0; i < amount; i++) {
+        return_value._ptr_array[i] = _ptr_array[i];
+      }
+
+      T *temp_char = new T[_size - amount];
+
+      for (int i = 0; i < _size - amount; i++) {
+        temp_char[i] = _ptr_array[i + amount];
+      }
+
+      delete[] _ptr_array;
+
+      _ptr_array = temp_char;
+      _size = _size - amount;
+
+      return return_value;
+    }
+
+
+// removes several elements from tail and returns deleted elements as array =============
+
+    array<T> remove_t(int amount) {
+      array<T> return_value(amount);
+      return_value._size = amount;
+      return_value._ptr_array = new T[amount];
+
+      int j = 0;
+      for (int i = _size - amount; i < _size; i++, j++) {
+        return_value._ptr_array[i - (_size - amount)] = _ptr_array[i];
+      }
+
+      T *temp_char = new T[_size - amount];
+
+      for (int i = 0; i < _size - amount; i++) {
+        temp_char[i] = _ptr_array[i];
+      }
+
+      delete[] _ptr_array;
+
+      _ptr_array = temp_char;
+      _size = _size - amount;
+
+      return return_value;
+    }
+
+
 // reverses array =======================================================================
 
     void reverse() {
@@ -201,26 +254,29 @@ class array {
     }
 
 
+// concatenates two arrays ==============================================================
 
-// concatenate two arrays ===============================================================
+    array<T>& operator + (const array<T> &another) {
+      T *temp_arr = new T[_size + another._size];
 
-    array<T>& operator += (const array<T> &another) {
-      T *temp_arr = new T[this->_size + another._size];
-
-      for (int i = 0; i < this->_size; i++) {
-        temp_arr[i] = this->_ptr_array[i];
+      for (int i = 0; i < _size; i++) {
+        temp_arr[i] = _ptr_array[i];
       }
 
       int j = 0;
-      for (int i = this->_size; i < this->_size + another._size; i++, j++) {
+      for (int i = _size; i < _size + another._size; i++, j++) {
         temp_arr[i] = another._ptr_array[j];
       }
 
-      this->_size = this->_size + another._size;
-      this->_ptr_array = temp_arr;
+      _size = _size + another._size;
+      _ptr_array = temp_arr;
 
       return *this;
     }
+
+
+// 
+
 
 
   private:
