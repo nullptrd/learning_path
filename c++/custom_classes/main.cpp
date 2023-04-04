@@ -3,18 +3,22 @@
 int main() {
 
 
- // array class demo ==================================================================== 
+// array class demo ==================================================================== 
+  
   std::cout << "ARRAY" << std::endl;
   std::cout << "creating, print()s and size" << std::endl;
-  array<int> int_arr(6);
+  array<int> int_arr(16);
+  int_arr.fill();
   std::cout << "size: " << int_arr.size() << std::endl;
   int_arr.print();
     
   std::cout << std::endl;
 
   std::cout << "change" << std::endl;
-  int_arr.change(2, 4);
-  int_arr.print();
+  int_arr.change(0, 4);
+  int_arr.change(4, 9);
+  int_arr.change(5, 1);
+/*  int_arr.print();
 
   std::cout << std::endl;
 
@@ -64,7 +68,7 @@ int main() {
   int_arr.remove_h(3).print();
   int_arr.print();
   std::cout << "size: " << int_arr.size() << std::endl;
-  int_arr.insert_f(12);
+  int_arr.insert_f(4);
   int_arr.insert_f(1);
   int_arr.insert_f(5);
   int_arr.insert_f(0);
@@ -101,9 +105,64 @@ int main() {
   std::cout << "size: " << res_arr.size() << std::endl;
 
   std::cout << std::endl;
+
+  std::cout << "operator -" << std::endl;
+  std::cout << "before: ";
+  int_arr.print();
+  std::cout << "after: ";
+  int_arr = int_arr - 2;
+  int_arr.print();
+  std::cout << "size: " << int_arr.size() << std::endl;
+
+  std::cout << std::endl;
+*/
+ 
+// array sorting algorithms =============================================================
+
+  std::cout << "bubble sort" << std::endl;
+  std::cout << "before: ";
+  int_arr.print();
+  std::cout << "after:  ";
+  int_arr.bubble_sort();
+  int_arr.print();
+
   std::cout << std::endl;
 
- // string class demo ===================================================================
+  int_arr.fill();
+  std::cout << "selection sort" << std::endl;
+  std::cout << "before: ";
+  int_arr.print();
+  std::cout << "after:  ";
+  int_arr.selection_sort();
+  int_arr.print();
+
+  std::cout << std::endl;
+
+  int_arr.fill();
+  std::cout << "insertion sort" << std::endl;
+  std::cout << "before: ";
+  int_arr.print();
+  std::cout << "after:  ";
+  int_arr.insertion_sort();
+  int_arr.print();
+
+  std::cout << std::endl;
+
+  int_arr.fill();
+  std::cout << "quick sort" << std::endl;
+  std::cout << "before: ";
+  int_arr.print();
+  std::cout << "after:  ";
+  int_arr.quick_sort();
+  int_arr.print();
+
+  std::cout << std::endl;
+  std::cout << std::endl;
+
+
+
+// string class demo ===================================================================
+
   std::cout << "STRING" << std::endl;
   std::cout << "creating, print()s and size" << std::endl;
   string str("abcdefghijklmnopqrstuvwxyz");
